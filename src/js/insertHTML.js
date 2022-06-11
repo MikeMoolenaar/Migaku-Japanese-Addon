@@ -1,13 +1,11 @@
-function insertHTML(newHTML) {
-  const sel = window.getSelection();
-  const field = get_field(sel);
-  selectAllFieldNodes(field, sel);
-  setFormat("inserthtml", newHTML.trim());
+require("anki/ui").loaded.then(async () => {
+  const noteEditor = require("anki/NoteEditor");
+  const focusedInputSub = noteEditor.instances[0].focusedInput;
 
-}
-try {
-
-  insertHTML("%s");
-} catch (e) {
-  alert(e);
-}
+  const unsubscribe = focusedInputSub.subscribe(async (x) => {
+    const focusedInput = await (x?.element);
+    if (!focusedInput) return;
+    focusedInput.innerText = '%s';
+  });
+  unsubscribe();
+});
