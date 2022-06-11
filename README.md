@@ -1,3 +1,5 @@
+### Fork of the Migaku Japanese Addon to support Anki 2.1.53 (Qt6). Work is still in progress and current version is still unstable.
+
 <h2 align="center">Migaku Japanese Addon</h2>
 
 <p align="center">
