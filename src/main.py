@@ -3,7 +3,9 @@
 from anki import models
 from os.path import dirname, join
 import sys, os, platform, re, subprocess, aqt.utils
-from anki.utils import stripHTML, isWin, isMac
+
+from anki.collection import Collection
+from anki.utils import is_win, is_mac
 from . import reading 
 import re
 import unicodedata
@@ -18,7 +20,6 @@ import copy
 from .miutils import miInfo
 from anki import sound
 from anki.find import Finder
-from anki import Collection
 from aqt.main import AnkiQt
 from . import models as MigakuModel
 from shutil import copyfile
@@ -70,7 +71,7 @@ addHook("profileLoaded", languageModeler.addModels)
 
 def accentGraphCss():
     css = r" .accentsBlock{line-height:35px;} .museika{width:22px;height:22px;border-radius:50% ;border:1px #db4130 dashed} .pitch-box{position:relative} .pitch-box,.pitch-drop,.pitch-overbar{display:inline-block} .pitch-overbar{background-color:#db4130;height:1px;width:100% ;position:absolute;top:-3px;left:0} .pitch-drop{background-color:#db4130;height:6px;width:2px;position:absolute;top:-3px;right:-2px}"
-    aqt.editor._html = aqt.editor._html.replace('</style>', css.replace('%', r'%%') + '</style>')
+    aqt.editor.munge_html('<style>' + css.replace('%', r'%%') + '</style>', aqt.editor)
     
 def shortcutCheck(x, key):
     if x == key:
@@ -179,9 +180,9 @@ def openGui():
     if not mw.MigakuJSSettings:
         mw.MigakuJSSettings = JSGui(mw, colArray, languageModeler, openGui, mw.CSSJSHandler, UEManager)
     mw.MigakuJSSettings.show()
-    if mw.MigakuJSSettings.windowState() == Qt.WindowMinimized:
+    if mw.MigakuJSSettings.windowState() == Qt.WindowState.WindowMinimized:
             # Window is minimised. Restore it.
-           mw.MigakuJSSettings.setWindowState(Qt.WindowNoState)
+           mw.MigakuJSSettings.setWindowState(Qt.WindowState.WindowMinimized)
     mw.MigakuJSSettings.setFocus()
     mw.MigakuJSSettings.activateWindow()
 
@@ -270,30 +271,30 @@ def supportAccept(self):
 ogAccept = aqt.addons.ConfigEditor.accept
 aqt.addons.ConfigEditor.accept = supportAccept
 
-def customFind(self, query, order=False):
+def customFind(self, query, order=False, reverse=False):
     if 'nobr' in query:
         query = query.replace('nobr', '').replace('\n', '').replace('\r', '').strip()
         newquery = []
         for char in query:
             newquery.append(char)
         query = '*'.join(newquery)
-    return ogFind(self, query, order)
+    return ogFind(self, query, order, reverse)
 
 ogFind = Collection.find_cards
 Collection.find_cards = customFind
 
-def getFieldName(fieldId, note):
+def getFieldName(fieldIndex, note):
     fields = mw.col.models.fieldNames(note.model())
-    field = fields[int(fieldId)]
+    field = fields[int(fieldIndex)]
     return field;
 
 def bridgeReroute(self, cmd):
+    print("Command: " + cmd)
     if checkProfile():
         if cmd.startswith('textToJReading'):
             splitList = cmd.split(':||:||:')
-            if self.note.id == int(splitList[3]):
-                field = getFieldName(splitList[2], self.note)
-                mw.Exporter.finalizeGroupExport(self, splitList[1], field, self.note)
+            field = getFieldName(splitList[2], self.note)
+            mw.Exporter.finalizeGroupExport(self, splitList[1], field, self.note)
             return
         elif cmd.startswith('individualJExport'):
             splitList = cmd.split(':||:||:')
