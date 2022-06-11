@@ -8,7 +8,7 @@ from anki.hooks import addHook
 from aqt.qt import *
 from aqt.utils import openLink, tooltip
 from .miutils import miInfo, miAsk
-from anki.utils import isMac, isWin, isLin
+from anki.utils import is_mac, is_win, is_lin
 from anki.lang import _
 from aqt.webview import AnkiWebView
 import re
@@ -75,7 +75,7 @@ class JSGui(QScrollArea):
     def setInitialValues(self):
         self.setWindowIcon(QIcon(join(addon_path, 'icons', 'migaku.png')))
         self.setWindowTitle("Migaku Japanese Settings (Ver. " + verNumber + ")")
-        self.cont.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.cont.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         self.cont.setFixedSize(1167, 725)
         self.setWidget(self.cont)
         self.setWidgetResizable(True)
@@ -107,8 +107,8 @@ class JSGui(QScrollArea):
         self.ueMng.model.ascendingOrder()
         self.updateRuleCounter()
         tableHeader2 = rt.horizontalHeader()
-        tableHeader2.setSectionResizeMode(0, QHeaderView.Stretch)
-        tableHeader2.setSectionResizeMode(1, QHeaderView.Stretch)
+        tableHeader2.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        tableHeader2.setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
 
     def customContextMenu(self, event):
         rows = self.ui.rulesTable.selectionModel().selectedRows()
@@ -174,11 +174,11 @@ class JSGui(QScrollArea):
         event.accept() 
 
     def openApplyRuleInquiry(self, rule):
-        self.arMenu = QWidget(self, Qt.Window)
+        self.arMenu = QWidget(self, Qt.WindowType.Window)
         self.arMenu.setWindowTitle('Apply Edited Rule?')
-        self.arMenu.setWindowFlags(Qt.Dialog |Qt.MSWindowsFixedSizeDialogHint)
+        self.arMenu.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.arMenu.setFixedSize(270,80)
-        self.arMenu.setWindowModality(Qt.ApplicationModal)
+        self.arMenu.setWindowModality(Qt.WindowModality.ApplicationModal)
         label = QLabel('Apply to:', self.arMenu)
         hLayout = QHBoxLayout()
         ncCB = QCheckBox('new cards')
@@ -868,7 +868,7 @@ class JSGui(QScrollArea):
             prof = self.ui.activeProfileCB.currentText()
             for noteType in self.ciSort(self.cA[prof]):
                     self.ui.activeNoteTypeCB.addItem(noteType)
-                    self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, noteType + ' (Prof:' + prof + ')',Qt.ToolTipRole)
+                    self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, noteType + ' (Prof:' + prof + ')',Qt.ItemDataRole.ToolTipRole)
                     self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, prof + ':pN:' + noteType)
         self.loadCardTypesFields()
         self.changingProfile = False
@@ -887,10 +887,10 @@ class JSGui(QScrollArea):
         curProf, curNote = self.ui.activeNoteTypeCB.itemData(self.ui.activeNoteTypeCB.currentIndex()).split(':pN:')     
         for cardType in self.cA[curProf][curNote]['cardTypes']:
             self.ui.activeCardTypeCB.addItem(cardType)
-            self.ui.activeCardTypeCB.setItemData(self.ui.activeCardTypeCB.count() - 1, cardType,Qt.ToolTipRole)
+            self.ui.activeCardTypeCB.setItemData(self.ui.activeCardTypeCB.count() - 1, cardType,Qt.ItemDataRole.ToolTipRole)
         for field in self.cA[curProf][curNote]['fields']:
             self.ui.activeFieldCB.addItem(field)
-            self.ui.activeFieldCB.setItemData(self.ui.activeFieldCB.count() - 1, field,Qt.ToolTipRole)
+            self.ui.activeFieldCB.setItemData(self.ui.activeFieldCB.count() - 1, field,Qt.ItemDataRole.ToolTipRole)
         return
 
     def updateCurrentProfileInfo(self, colA):
@@ -990,13 +990,13 @@ class JSGui(QScrollArea):
         aP = self.ui.activeProfileCB
         for prof in self.sortedProfiles:
             aP.addItem(prof)
-            aP.setItemData(aP.count() -1, prof, Qt.ToolTipRole)
+            aP.setItemData(aP.count() -1, prof, Qt.ItemDataRole.ToolTipRole)
         self.loadAllNotes()
 
     def loadAllNotes(self):
         for noteType in self.sortedNoteTypes:
             self.ui.activeNoteTypeCB.addItem(noteType[0])
-            self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, noteType[0],Qt.ToolTipRole)
+            self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, noteType[0],Qt.ItemDataRole.ToolTipRole)
             self.ui.activeNoteTypeCB.setItemData(self.ui.activeNoteTypeCB.count() - 1, noteType[1])
 
     def clearAllAF(self):
@@ -1012,15 +1012,15 @@ class JSGui(QScrollArea):
         aP.addItem('All')
         aP.addItem('──────────────────')
         aP.model().item(aP.count() - 1).setEnabled(False)
-        aP.model().item(aP.count() - 1).setTextAlignment(Qt.AlignCenter)
+        aP.model().item(aP.count() - 1).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.loadAllProfiles()  
         self.loadCardTypesFields()
         for key, value in self.sides.items():
             self.ui.activeSideCB.addItem(key)
-            self.ui.activeSideCB.setItemData(self.ui.activeSideCB.count() - 1, value ,Qt.ToolTipRole)
+            self.ui.activeSideCB.setItemData(self.ui.activeSideCB.count() - 1, value ,Qt.ItemDataRole.ToolTipRole)
         for key, value in self.displayTypes.items():
             self.ui.activeDisplayTypeCB.addItem(key)
-            self.ui.activeDisplayTypeCB.setItemData(self.ui.activeDisplayTypeCB.count() - 1, value[1] ,Qt.ToolTipRole)
+            self.ui.activeDisplayTypeCB.setItemData(self.ui.activeDisplayTypeCB.count() - 1, value[1] ,Qt.ItemDataRole.ToolTipRole)
             self.ui.activeDisplayTypeCB.setItemData(self.ui.activeDisplayTypeCB.count() - 1, value[0])
 
     def loadProfileCB(self):
@@ -1028,10 +1028,10 @@ class JSGui(QScrollArea):
         pcb.addItem('All')
         pcb.addItem('──────')
         pcb.model().item(pcb.count() - 1).setEnabled(False)
-        pcb.model().item(pcb.count() - 1).setTextAlignment(Qt.AlignCenter)
+        pcb.model().item(pcb.count() - 1).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         for prof in self.cA:
             pcb.addItem(prof)
-            pcb.setItemData(pcb.count() -1, prof, Qt.ToolTipRole)
+            pcb.setItemData(pcb.count() -1, prof, Qt.ItemDataRole.ToolTipRole)
 
     def loadProfilesList(self):
         pl = self.ui.profilesList
@@ -1060,12 +1060,12 @@ class JSGui(QScrollArea):
         self.ui.audioFieldsCB.addItem('Clipboard')
         self.ui.audioFieldsCB.addItem('──────────────────')
         self.ui.audioFieldsCB.model().item(self.ui.audioFieldsCB.count() - 1).setEnabled(False)
-        self.ui.audioFieldsCB.model().item(self.ui.audioFieldsCB.count() - 1).setTextAlignment(Qt.AlignCenter)
+        self.ui.audioFieldsCB.model().item(self.ui.audioFieldsCB.count() - 1).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.ui.audioFieldsCB.addItems(self.allFields)
         self.ui.pitchGraphsCB.addItem('Clipboard')
         self.ui.pitchGraphsCB.addItem('──────────────────')
         self.ui.pitchGraphsCB.model().item(self.ui.pitchGraphsCB.count() - 1).setEnabled(False)
-        self.ui.pitchGraphsCB.model().item(self.ui.pitchGraphsCB.count() - 1).setTextAlignment(Qt.AlignCenter)
+        self.ui.pitchGraphsCB.model().item(self.ui.pitchGraphsCB.count() - 1).setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         self.ui.pitchGraphsCB.addItems(self.allFields)
 
     def loadFieldsList(self, audio):

@@ -316,7 +316,7 @@ src: url(_yumin.ttf);
         config = self.mw.addonManager.getConfig(__name__)
         if config:
             for model in self.modelList:
-                if not self.mw.col.models.byName(model[0]):
+                if not self.mw.col.models.by_name(model[0]):
                   if config.get('AddMigakuJapaneseTemplate', False) == "on":
                       self.addModel(model)
                       self.addExportTemplates()

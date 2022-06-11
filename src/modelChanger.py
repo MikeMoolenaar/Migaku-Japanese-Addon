@@ -1,5 +1,5 @@
 from aqt import mw
-from aqt.browser import ChangeModel
+from aqt.forms import changemodel
 from anki.hooks import wrap
 from aqt.qt import *
 from aqt.utils import askUser
@@ -200,10 +200,9 @@ Are you sure you want to continue?"""
         self.cleanup()
         QDialog.accept(self)
 
-if not hasattr(ChangeModel, "migakuOveriddenMethods"):
-    print("ADDED THROUGH JP")
-    ChangeModel.migakuOveriddenMethods = True
-    ChangeModel.accept = migakuAccept
-    ChangeModel.modelChanged = migakuModelChanged
-    ChangeModel.rebuildTemplateMap = migakuRebuildTemplateMap
+if not hasattr(changemodel, "migakuOveriddenMethods"):
+    changemodel.migakuOveriddenMethods = True
+    changemodel.accept = migakuAccept
+    changemodel.modelChanged = migakuModelChanged
+    changemodel.rebuildTemplateMap = migakuRebuildTemplateMap
 

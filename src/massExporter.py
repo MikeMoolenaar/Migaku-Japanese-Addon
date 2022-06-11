@@ -126,13 +126,13 @@ class MassExporter:
         progressWidget.setWindowTitle('Generating...')
         progressWidget.setWindowIcon(QIcon(join(self.addon_path, 'icons', 'migaku.png')))
         bar = QProgressBar(progressWidget)
-        if isMac:
+        if is_mac:
             bar.setFixedSize(380, 50)
         else:
             bar.setFixedSize(390, 50)
         bar.move(10,10)
         per = QLabel(bar)
-        per.setAlignment(Qt.AlignCenter)
+        per.setAlignment(Qt.AlignmentFlag.AlignCenter)
         progressWidget.show()
         return progressWidget, bar;
 

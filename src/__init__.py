@@ -12,4 +12,4 @@
 # The final release will also be organized into individual .py files by functionality.
 # Lucas - Migaku Founder
 
-from . import main, migakuMessage, modelChanger
+from . import main, modelChanger

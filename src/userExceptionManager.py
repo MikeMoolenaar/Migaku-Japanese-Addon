@@ -72,7 +72,7 @@ class OgOvFilter(QSortFilterProxyModel):
         return True
 
     def headerData(self, section, orientation, role):
-        if orientation == Qt.Vertical and role == Qt.DisplayRole:
+        if orientation == Qt.Orientation.Vertical and role == Qt.ItemDataRole.DisplayRole:
             return section + 1
         return super(OgOvFilter, self).headerData(section, orientation, role)
 
@@ -92,13 +92,13 @@ class RulesModel(QAbstractTableModel):
     def columnCount(self, index=QModelIndex()):
         return 2
 
-    def data(self, index, role=Qt.DisplayRole):
+    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
         if not index.isValid():
             return None
 
         if not 0 <= index.row() < len(self.ueList):
             return None
-        if role == Qt.DisplayRole or role == Qt.EditRole:
+        if role == Qt.ItemDataRole.DisplayRole or role == Qt.ItemDataRole.EditRole:
             original = self.ueList[index.row()][0]
             overwrite = self.ueList[index.row()][1]
             
@@ -109,16 +109,16 @@ class RulesModel(QAbstractTableModel):
         return None
 
 
-    def headerData(self, section, orientation, role=Qt.DisplayRole):
-        if role != Qt.DisplayRole:
+    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
+        if role != Qt.ItemDataRole.DisplayRole:
             return None
 
-        if orientation == Qt.Horizontal:
+        if orientation == Qt.Orientation.Horizontal:
             if section == 0:
                 return "Original"
             elif section == 1:
                 return "Overwrite"
-        if orientation == Qt.Vertical:
+        if orientation == Qt.Orientation.Vertical:
             return section + 1;
         return None
 
@@ -142,8 +142,8 @@ class RulesModel(QAbstractTableModel):
         self.mng.saveUEList()
         return True
 
-    def setData(self, index, value, role=Qt.EditRole, overwriteRule = False, ruleDict = None):
-        if role != Qt.EditRole:
+    def setData(self, index, value, role=Qt.ItemDataRole.EditRole, overwriteRule = False, ruleDict = None):
+        if role != Qt.ItemDataRole.EditRole:
             return False
 
         if overwriteRule and ruleDict['row'] < len(self.ueList):
@@ -178,9 +178,8 @@ class RulesModel(QAbstractTableModel):
 
     def flags(self, index):
         if not index.isValid():
-            return Qt.ItemIsEnabled
-        return Qt.ItemFlags(QAbstractTableModel.flags(self, index) |
-                            Qt.ItemIsEditable)
+            return Qt.ItemFlag.ItemIsEnabled
+        return QAbstractTableModel.flags(self, index) | Qt.ItemFlag.ItemIsEditable
 
 class UserExceptionManager:
 
@@ -207,7 +206,7 @@ class UserExceptionManager:
         else:
             self.addMenu = QWidget(self.mw)
         self.addMenu.setWindowIcon(QIcon(join(self.addon_path, 'icons', 'migaku.png')))
-        self.addMenu.setWindowFlags(Qt.Dialog |Qt.MSWindowsFixedSizeDialogHint)
+        self.addMenu.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.addMenu.ui = Ui_Form()
         self.addMenu.ui.setupUi(self.addMenu)
         self.updateCount(self.addMenu.ui.listCount)
@@ -259,7 +258,7 @@ class UserExceptionManager:
             else:
                 edit = True
         if edit:
-            self.model.setData(None, None, Qt.EditRole, True, {'row': foundId, 'og': original, 'ov': overwrite})
+            self.model.setData(None, None, Qt.ItemDataRole.EditRole, True, {'row': foundId, 'og': original, 'ov': overwrite})
         else:
             self.writeRule(original, overwrite)
         if addMenu:
@@ -310,19 +309,19 @@ class UserExceptionManager:
         return False
     
     def getProgressWidget(self, parentWidget, title):
-        progressWidget = QWidget(parentWidget, Qt.Window)
+        progressWidget = QWidget(parentWidget, Qt.WindowType.Window)
         progressWidget.setWindowTitle(title)
         layout = QVBoxLayout()
         progressWidget.setFixedSize(400, 70)
-        progressWidget.setWindowModality(Qt.ApplicationModal)
+        progressWidget.setWindowModality(Qt.WindowModality.ApplicationModal)
         bar = QProgressBar(progressWidget)
-        if isMac:
+        if is_mac:
             bar.setFixedSize(380, 50)
         else:
             bar.setFixedSize(390, 50)
         bar.move(10,10)
         per = QLabel(bar)
-        per.setAlignment(Qt.AlignCenter)
+        per.setAlignment(Qt.AlignmentFlag.AlignCenter)
         progressWidget.show()
         return progressWidget, bar; 
 
