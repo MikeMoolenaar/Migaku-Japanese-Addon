@@ -335,20 +335,18 @@ class JSGui(QScrollArea):
         self.ui.rulesTable.scrollToTop()
 
     def exportRules(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self,"Save Overwrite Rules List", 'overwriterules.json', 'JSON Files (*.json)', options=options)
+        fileName, _ = QFileDialog.getSaveFileName(self,"Save Overwrite Rules List", 'overwriterules.json', 'JSON Files (*.json)',
+                                               options=QFileDialog.Option.DontUseNativeDialog)
         if fileName:
             self.ueMng.exportUEList(fileName)
 
 
     def importRules(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"Select an Overwrite Rules List", "",'JSON Files (*.json)', options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self,"Select an Overwrite Rules List", "",'JSON Files (*.json)',
+                                                  options=QFileDialog.Option.DontUseNativeDialog)
         if fileName:
-            self.importW = QWidget(self, Qt.Window)
-            self.importW.setWindowModality(Qt.ApplicationModal)
+            self.importW = QWidget(self, Qt.WindowType.Window)
+            self.importW.setWindowModality(Qt.WindowModality.ApplicationModal)
             self.importW.setWindowTitle('Import Overwrite Rules List')
             vLayout = QVBoxLayout()
             hLayout1 = QHBoxLayout()
