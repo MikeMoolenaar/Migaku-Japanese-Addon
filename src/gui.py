@@ -758,10 +758,10 @@ class JSGui(QScrollArea):
     def unspecifiedProfileLoad(self, nt, ct, field, side, dt):
         self.ui.activeProfileCB.setCurrentIndex(0)
         if self.findFirstNoteCardFieldMatch(nt, ct, field):
-            index = self.ui.activeSideCB.findText(side, Qt.MatchFixedString)
+            index = self.ui.activeSideCB.findText(side, Qt.MatchFlag.MatchFixedString)
             if index >= 0:
                 self.ui.activeSideCB.setCurrentIndex(index)
-            index = self.ui.activeDisplayTypeCB.findText(dt, Qt.MatchFixedString)
+            index = self.ui.activeDisplayTypeCB.findText(dt, Qt.MatchFlag.MatchFixedString)
             if index >= 0:
                 self.ui.activeDisplayTypeCB.setCurrentIndex(index)
             return True
@@ -772,9 +772,9 @@ class JSGui(QScrollArea):
         for i in range(self.ui.activeNoteTypeCB.count()):
             if self.ui.activeNoteTypeCB.itemText(i).startswith(nt):
                 self.ui.activeNoteTypeCB.setCurrentIndex(i)
-                ci = self.ui.activeCardTypeCB.findText(ct, Qt.MatchFixedString)
+                ci = self.ui.activeCardTypeCB.findText(ct, Qt.MatchFlag.MatchFixedString)
                 if ci >= 0:
-                    fi = self.ui.activeFieldCB.findText(field, Qt.MatchFixedString)
+                    fi = self.ui.activeFieldCB.findText(field, Qt.MatchFlag.MatchFixedString)
                     if fi >= 0:
                         self.ui.activeNoteTypeCB.setCurrentIndex(i)
                         self.ui.activeCardTypeCB.setCurrentIndex(ci)
@@ -783,22 +783,22 @@ class JSGui(QScrollArea):
         return False
 
     def specifiedProfileLoad(self, prof, nt, ct, field, side, dt):
-        index = self.ui.activeProfileCB.findText(prof, Qt.MatchFixedString)
+        index = self.ui.activeProfileCB.findText(prof, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeProfileCB.setCurrentIndex(index)
-        index = self.ui.activeNoteTypeCB.findText(nt, Qt.MatchFixedString)
+        index = self.ui.activeNoteTypeCB.findText(nt, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeNoteTypeCB.setCurrentIndex(index)
-        index = self.ui.activeCardTypeCB.findText(ct, Qt.MatchFixedString)
+        index = self.ui.activeCardTypeCB.findText(ct, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeCardTypeCB.setCurrentIndex(index)
-        index = self.ui.activeFieldCB.findText(field, Qt.MatchFixedString)
+        index = self.ui.activeFieldCB.findText(field, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeFieldCB.setCurrentIndex(index)
-        index = self.ui.activeSideCB.findText(side, Qt.MatchFixedString)
+        index = self.ui.activeSideCB.findText(side, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeSideCB.setCurrentIndex(index)
-        index = self.ui.activeDisplayTypeCB.findText(dt, Qt.MatchFixedString)
+        index = self.ui.activeDisplayTypeCB.findText(dt, Qt.MatchFlag.MatchFixedString)
         if index >= 0:
             self.ui.activeDisplayTypeCB.setCurrentIndex(index)
         return True

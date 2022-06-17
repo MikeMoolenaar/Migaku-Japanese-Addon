@@ -23,25 +23,25 @@ def miInfo(text, parent=False, level = 'msg'):
     mb.setText(text)
     mb.setWindowIcon(icon)
     mb.setWindowTitle(title)
-    b = mb.addButton(QMessageBox.Ok)
+    b = mb.addButton(QMessageBox.StandardButton.Ok)
     b.setDefault(True)
 
-    return mb.exec_()
+    return mb.exec()
 
 def miAsk(text, parent=None, day=True):
     msg = QMessageBox(parent)
     msg.setWindowTitle("Migaku Japanese")
     msg.setText(text)
     icon = QIcon(join(addon_path, 'icons', 'migaku.png'))
-    b = msg.addButton(QMessageBox.Yes)
+    b = msg.addButton(QMessageBox.StandardButton.Yes)
     b.setFixedSize(100, 30)
     b.setDefault(True)
-    c = msg.addButton(QMessageBox.No)
+    c = msg.addButton(QMessageBox.StandardButton.No)
     c.setFixedSize(100, 30)
     if not day:
         msg.setStyleSheet(" QMessageBox {background-color: #272828;}")
     msg.setWindowIcon(icon)
-    msg.exec_()
+    msg.exec()
     if msg.clickedButton() == b:
         return True
     else:

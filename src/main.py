@@ -106,21 +106,21 @@ def setupButtons(righttopbtns, editor):
   righttopbtns.insert(0, editor._addButton(
                 icon=iconPath,
                 cmd='openUserExceptionsAdder',
-                tip="Hotkey: F5",
+                tip="Open exceptions adder (F5)",
                 id=u"+"
             ))
   iconPath = os.path.join(addon_path, "icons", "saku.svg")
   righttopbtns.insert(0, editor._addButton(
                 icon= iconPath,
                 cmd='cleanField',
-                tip="Hotkey: F4",
+                tip="Clean field (F4)",
                 id=u"削"
             ))
   iconPath = os.path.join(addon_path, "icons", "go.svg")
   righttopbtns.insert(0, editor._addButton(
                 icon= iconPath,
                 cmd='individualExport',
-                tip="Hotkey: F3",
+                tip="Generate word (F3)",
                 id=u"語"
             ))  
   editor._links["groupExport"] = lambda editor: mw.Exporter.groupExport(editor)
@@ -128,7 +128,7 @@ def setupButtons(righttopbtns, editor):
   righttopbtns.insert(0, editor._addButton(
                 icon= iconPath,
                 cmd='groupExport',
-                tip="Hotkey: F2",
+                tip="Generate sentence (F2)",
                 id=u"文"
             ))
   return righttopbtns
@@ -289,7 +289,6 @@ def getFieldName(fieldIndex, note):
     return field;
 
 def bridgeReroute(self, cmd):
-    print("Command: " + cmd)
     if checkProfile():
         if cmd.startswith('textToJReading'):
             splitList = cmd.split(':||:||:')

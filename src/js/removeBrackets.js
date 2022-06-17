@@ -1,9 +1,7 @@
 function cleanUpSpaces(text){
       return text.replace(/ /g, '');
 }
-function removeBrackets() {
-  const sel = window.getSelection();
-  const field = get_field(sel);
+function removeBrackets(field) {
   let text = field.innerHTML;
   if (text === "") return;
   let pattern2 = /(\[sound:[^\]]+?\])|(?:\[\d*\])|(?:\[[\w ]+?\])/g;
@@ -41,12 +39,17 @@ function removeBrackets() {
     } 
 
   }
-  const html = text;
-  selectAllFieldNodes(field, sel);
-  setFormat("inserthtml", html);
+  field.innerHTML = text;
 }
-try {
-  removeBrackets();
-} catch (e) {
-  alert(e);
-}
+
+require("anki/ui").loaded.then(async () => {
+  const noteEditor = require("anki/NoteEditor");
+  const focusedInputSub = noteEditor.instances[0].focusedInput;
+
+  const unsubscribe = focusedInputSub.subscribe(async (x) => {
+    const focusedInput = await (x?.element);
+    if (!focusedInput) return;
+    removeBrackets(focusedInput);
+  });
+  unsubscribe();
+});

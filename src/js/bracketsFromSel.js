@@ -53,10 +53,7 @@ function wrapSelection(sel) {
     }
 }
 
-function selBrackDelete() {
-  const sel = window.getSelection();
-  var cur = get_field(sel);
-  ogHtml = cur.innerHTML;
+function selBrackDelete(cur) {
   var startCont, startOff, endCont, endOff;
   [startCont, startOff,endCont, endOff] = wrapSelection(sel);
   var offset = 0;
@@ -67,14 +64,18 @@ function selBrackDelete() {
   var selectedText = cur.innerHTML.match(/--IND--.+--IND--/)[0];
   var removedText = removeBracketsFromSel(selectedText);
   removedText = removedText.replace(/--IND--/g, '');
-  const html= cur.innerHTML.replace(selectedText, removedText);
-  cur.innerHTML = ogHtml;
-  selectAllFieldNodes(cur, sel);
-  setFormat("inserthtml", html);
+  const html = cur.innerHTML.replace(selectedText, removedText);
+  cur.innerHTML = html;
+}
 
-}
-try {
-  selBrackDelete();
-} catch (e) {
-  alert(e);
-}
+require("anki/ui").loaded.then(async () => {
+  const noteEditor = require("anki/NoteEditor");
+  const focusedInputSub = noteEditor.instances[0].focusedInput;
+
+  const unsubscribe = focusedInputSub.subscribe(async (x) => {
+    const focusedInput = await (x?.element);
+    if (!focusedInput) return;
+    selBrackDelete(focusedInput);
+  });
+  unsubscribe();
+});
