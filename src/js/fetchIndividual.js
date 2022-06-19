@@ -1,23 +1,17 @@
-function wrapSelection(sel) {
-    var range, html, wrapper;
-    if (sel) {
-        var wrapper = document.createElement("p");
-        wrapper.classList.add('selection-wrapper')
-        sel = window.getSelection();
-        if(sel.toString().length < 2) return [sel.anchorNode, sel.anchorOffset, false,false];
-        if (sel.getRangeAt && sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            return [range.startContainer,range.startOffset, range.endContainer, range.endOffset];
-        }
+function wrapSelection(selection) {
+    var selection = selection.parentNode.getSelection();
+    if(selection.toString().length < 2) 
+      return [selection.anchorNode, selection.anchorOffset, false,false];
+    if (selection.getRangeAt && selection.rangeCount) {
+        var range = selection.getRangeAt(0);
+        return [range.startContainer,range.startOffset, range.endContainer, range.endOffset];
     }
 }
 
-function fetchIndividual() {
-  const sel = window.getSelection();
-  var cur = get_field(sel);
+function fetchIndividual(cur, fieldIndex) {
   var ogHTML = cur.innerHTML;
   var startCont, startOff, endCont, endOff;
-  [startCont, startOff,endCont, endOff] = wrapSelection(sel);
+  [startCont, startOff,endCont, endOff] = wrapSelection(cur);
   if(endCont){
     var offset = 0;
     if(startCont.isSameNode(endCont)) offset = 7;
@@ -26,18 +20,27 @@ function fetchIndividual() {
   }else{
     startCont.textContent = startCont.textContent.substring(0,startOff) + '--IND--' + startCont.textContent.substring(startOff);
   }
-  const newHTML = cur.innerHTML;
-  cur.innerHTML = ogHTML;  
-  return pycmd("individualJExport:||:||:" + newHTML + ':||:||:' +  currentField.id.substring(1) + ':||:||:' + currentNoteId);
+  pycmd("individualJExport:||:||:" + cur.innerHTML + ':||:||:' +  fieldIndex);
 }
 
-try {
-  fetchIndividual();
-} catch (e) {
-  alert(e);
-}finally {
-  if(cur){
-    document.getElementsByClassName('origin-word-class')[0].classList.remove('origin-word-class');
-    cur.innerHTML = ogHTML;
+require("anki/ui").loaded.then(async () => {
+  const noteEditor = require("anki/NoteEditor");
+  const focusedInputSub = noteEditor.instances[0].focusedInput;
+
+  // Get all anki-editable element so the index of the focused-input can be determined in the next part
+  const inputs = [];
+  for (let x of noteEditor.instances[0].fields) {
+    const element = await x.element;
+    const input = element.querySelector(".rich-text-editable").shadowRoot.querySelector("anki-editable");
+    inputs.push(input);
   }
-}
+
+  const unsubscribe = focusedInputSub.subscribe(async (x) => {
+    const focusedInput = await (x?.element);
+    if (!focusedInput) return;
+    const fieldIndex = inputs.indexOf(focusedInput);
+
+    fetchIndividual(focusedInput, fieldIndex);
+  });
+  unsubscribe();
+})

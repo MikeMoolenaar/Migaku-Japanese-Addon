@@ -5,7 +5,7 @@ require("anki/ui").loaded.then(async () => {
   const unsubscribe = focusedInputSub.subscribe(async (x) => {
     const focusedInput = await (x?.element);
     if (!focusedInput) return;
-    focusedInput.innerText = '%s';
+    focusedInput.innerHTML = '%s';
   });
   unsubscribe();
 });

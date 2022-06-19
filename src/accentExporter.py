@@ -845,14 +845,11 @@ class AccentExporter:
                 text = self.writeAudioGraphsText(audioGraphs, note, gField, additionType, gSep, 1, editor)
 
     def getFieldOrdinal(self, note, field):
-        fields = note._model["flds"]
-        for f in fields:
-            if field == f['name']:
-                return f['ord']
-        else:
+        fields = self.mw.col.models.fieldNames(note.model())
+        try:
+            return fields.index(field)
+        except:
             return False
-        
-
 
     def writeAudioGraphsText(self, audioGraphs, note, field, overAdd, sep, which, editor):
         text = ''

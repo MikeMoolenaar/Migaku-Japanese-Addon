@@ -297,9 +297,8 @@ def bridgeReroute(self, cmd):
             return
         elif cmd.startswith('individualJExport'):
             splitList = cmd.split(':||:||:')
-            if self.note.id == int(splitList[3]):
-                field = getFieldName(splitList[2], self.note)
-                mw.Exporter.finalizeIndividualExport(self, splitList[1], field, self.note)
+            field = getFieldName(splitList[2], self.note)
+            mw.Exporter.finalizeIndividualExport(self, splitList[1], field, self.note)
             return
     ogReroute(self, cmd)
     
