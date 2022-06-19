@@ -284,7 +284,7 @@ ogFind = Collection.find_cards
 Collection.find_cards = customFind
 
 def getFieldName(fieldIndex, note):
-    fields = mw.col.models.field_names(note.note_type)
+    fields = mw.col.models.field_names(note.note_type())
     field = fields[int(fieldIndex)]
     return field;
 

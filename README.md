@@ -1,4 +1,4 @@
-### Fork of the Migaku Japanese Addon to support Anki 2.1.53 (Qt6). Work is still in progress and current version is still unstable.
+### Fork of the Migaku Japanese Addon to support Anki 2.1.50+ (Qt6). Work is still in progress and current version is still unstable.
 
 Broken functionality:
 - (linux) Generation of Pitch Graphs.
