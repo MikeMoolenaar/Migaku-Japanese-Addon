@@ -337,13 +337,13 @@ class UserExceptionManager:
         bar.setMaximum(len(notes))
         it = 0
         for nid in notes:
-            note = self.mw.col.getNote(nid)
+            note = self.mw.col.get_note(nid)
             alreadyAltered = False
             if not self.cardMeetsCriteria(note.cards(), newCards, learnedCards):
                 continue
-            noteType = note.model()
+            noteType = note.note_type()
             if noteType['name'] in self.activeFields:
-                fields = self.mw.col.models.fieldNames(note.model())
+                fields = self.mw.col.models.field_names(note.note_type())
                 for field in fields:
                     if field in self.activeFields[noteType['name']]:
                         for ogOv in ruleList:

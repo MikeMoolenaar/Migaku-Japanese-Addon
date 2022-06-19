@@ -6,8 +6,6 @@ from .miutils import miInfo,  miAsk
 from os.path import join
 from .constants import *
 
-
-
 class MassExporter:
     def  __init__(self, mw, exporter, addon_path):
         self.mw = mw
@@ -21,7 +19,7 @@ class MassExporter:
         notes = browser.selectedNotes()
         if notes:
             fields = anki.find.fieldNamesForNotes(self.mw.col, notes)
-            generateWidget = QDialog(None, Qt.Window)
+            generateWidget = QDialog(None, Qt.WindowType.Window)
             generateWidget.setWindowIcon(QIcon(join(self.addon_path, 'icons', 'migaku.png')))
             layout = QHBoxLayout()
             cbLabel = QLabel()
@@ -68,7 +66,7 @@ class MassExporter:
             layout.addWidget(b8)
             generateWidget.setWindowTitle("Generate Accents And Furigana")
             generateWidget.setLayout(layout)
-            generateWidget.exec_()
+            generateWidget.exec()
         else:
             miInfo('Please select some cards before attempting to mass generate.', level='err')
 
@@ -105,8 +103,8 @@ class MassExporter:
         bar.setMaximum(len(notes))
         val = 0;  
         for nid in notes:
-            note = self.mw.col.getNote(nid)
-            fields = self.mw.col.models.fieldNames(note.model())
+            note = self.mw.col.get_note(nid)
+            fields = self.mw.col.models.field_names(note.note_type())
             if field in fields:
                 text = note[field] 
                 text =  self.removeHTML(text)
@@ -122,7 +120,7 @@ class MassExporter:
         progressWidget = QWidget(None)
         layout = QVBoxLayout()
         progressWidget.setFixedSize(400, 70)
-        progressWidget.setWindowModality(Qt.ApplicationModal)
+        progressWidget.setWindowModality(Qt.WindowModality.ApplicationModal)
         progressWidget.setWindowTitle('Generating...')
         progressWidget.setWindowIcon(QIcon(join(self.addon_path, 'icons', 'migaku.png')))
         bar = QProgressBar(progressWidget)
@@ -146,8 +144,8 @@ class MassExporter:
         bar.setMaximum(len(notes))
         val = 0;  
         for nid in notes:
-            note = self.mw.col.getNote(nid)
-            fields = self.mw.col.models.fieldNames(note.model())
+            note = self.mw.col.get_note(nid)
+            fields = self.mw.col.models.field_names(note.note_type())
             if field in fields:
                 text = note[field] 
                 text =  self.exporter.removeBrackets(text)
@@ -169,8 +167,8 @@ class MassExporter:
         bar.setMaximum(len(notes))
         val = 0;  
         for nid in notes:
-            note = self.mw.col.getNote(nid)
-            fields = self.mw.col.models.fieldNames(note.model())
+            note = self.mw.col.get_note(nid)
+            fields = self.mw.col.models.field_names(note.note_type())
             if field in fields and dest in fields:
                 text = note[field] 
                 newText = text

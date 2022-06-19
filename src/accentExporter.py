@@ -819,7 +819,7 @@ class AccentExporter:
         config = self.getConfig()
         audioCon = config['AudioFields'].split(';')
         graphCon = config['PitchGraphFields'].split(';')
-        fields = self.mw.col.models.fieldNames(note.model())
+        fields = self.mw.col.models.field_names(note.note_type())
         aFields = audioCon[0].split(',')
         gFields = graphCon[0].split(',')
         aSep = '<br>'
@@ -845,7 +845,7 @@ class AccentExporter:
                 text = self.writeAudioGraphsText(audioGraphs, note, gField, additionType, gSep, 1, editor)
 
     def getFieldOrdinal(self, note, field):
-        fields = self.mw.col.models.fieldNames(note.model())
+        fields = self.mw.col.models.field_names(note.note_type())
         try:
             return fields.index(field)
         except:

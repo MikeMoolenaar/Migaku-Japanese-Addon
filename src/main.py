@@ -145,7 +145,7 @@ def checkProfile():
 def setupMenu(browser):
     if not checkProfile():
         return
-    a = QAction("Generate Readings/Accents/Audio", browser)
+    a = QAction("(Migaku Japanese) Generate Readings/Accents/Audio", browser)
     a.triggered.connect(lambda: MExporter.onRegenerate(browser))
     browser.form.menuEdit.addSeparator()
     browser.form.menuEdit.addAction(a)
@@ -284,7 +284,7 @@ ogFind = Collection.find_cards
 Collection.find_cards = customFind
 
 def getFieldName(fieldIndex, note):
-    fields = mw.col.models.fieldNames(note.model())
+    fields = mw.col.models.field_names(note.note_type)
     field = fields[int(fieldIndex)]
     return field;
 

@@ -119,7 +119,7 @@ class JSGui(QScrollArea):
             pos = event.pos()
             x = pos.x() + 20
             y = pos.y() + 115
-            action = menu.exec_(self.mapToGlobal(QPoint(x, y)))
+            action = menu.exec(self.mapToGlobal(QPoint(x, y)))
             if action == delete:
                 self.removeMultipleRules(rows, str(length))
 
