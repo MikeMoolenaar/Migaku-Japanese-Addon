@@ -720,6 +720,24 @@ class Ui_Dialog(object):
         self.tab_4 = QWidget()
         self.tab_4.setObjectName("tab_4")
         self.tab4vl = QVBoxLayout()
+
+        # Updated About section
+        self.updatedAbout = QGroupBox()
+        self.updatedAbout.setStyleSheet("QGroupBox { font-weight: bold; } ")
+        self.updatedAbout.setTitle("About this addon")
+        self.updatedAboutVL = QVBoxLayout()
+        aboutLabel = QLabel(
+            'This is an unofficial <a href="https://en.wikipedia.org/wiki/Fork_(software_development)">fork</a> of the Migaku Japanese Addon. The goal of this fork is to ' +
+           'be compatible with the latest Anki versions and do some more small improvements (see the README on Github for the full list).<br> Please note that this version '+
+           'is maintained by Mike Moolenaar and not affiliated with Migaku in any way. Don\'t report any issues with this version to the official migaku repository, but rather use '+
+           '<a href="https://github.com/MikeMoolenaar/MIA-Japanese-Add-on/">this Github page</a>. Refer to the README there for more info.<br>'+
+           'Please feel free to create an issue if you have any problems and I wish you the best of luck with Language Learning :).<br><br>'+
+           'The original about section continues below.')
+        aboutLabel.setWordWrap(True)
+        aboutLabel.setOpenExternalLinks(True)
+        self.updatedAboutVL.addWidget(aboutLabel)
+        self.updatedAbout.setLayout(self.updatedAboutVL)
+
         self.migakuAbout = QGroupBox()
         self.migakuAbout.setTitle('Migaku')
         self.migakuAboutVL = QVBoxLayout()
@@ -781,6 +799,7 @@ class Ui_Dialog(object):
         self.migakuContactVL.addWidget(self.gitHubIcon)
         self.migakuContact.setLayout(self.migakuContactVL)
         self.migakuThanks.setLayout(self.migakuThanksVL)
+        self.tab4vl.addWidget(self.updatedAbout)
         self.tab4vl.addWidget(self.migakuAbout)
         self.tab4vl.addWidget(self.migakuContact)
         self.tab4vl.addWidget(self.migakuThanks)

@@ -17,7 +17,6 @@ import os
 from os.path import dirname, join
 from aqt import mw
 from .jsgui import Ui_Dialog
-from PyQt5 import QtWidgets
 from operator import itemgetter
 addon_path = dirname(__file__)
 import platform
