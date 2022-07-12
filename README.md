@@ -37,8 +37,9 @@ Contributions are welcome! Feel free to:
 - Participate in the Discussions 
 
 ## Credits
-I would like to sincerely thank Migaku for creating the original addon and releasing the code under GPL-V3. 
-Please check out their [website](https://www.migaku.io/), [patreon](https://www.patreon.com/Migaku) and [YouTube channel](https://www.youtube.com/c/ImmersewithMigaku).
+I would like to sincerely thank Migaku for creating the original addon and releasing the code under GPL-V3. They put in the hard
+work and hours to create this addon, I simply updated the code so it works with the latest version of Anki.
+Please check out Migaku on [website](https://www.migaku.io/), [patreon](https://www.patreon.com/Migaku) and [YouTube channel](https://www.youtube.com/c/ImmersewithMigaku).
 
 ## Licence
 *Migaku Japanese Addon Updated* is
