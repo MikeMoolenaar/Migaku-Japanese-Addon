@@ -433,6 +433,6 @@ class UserExceptionManager:
     def exportUEList(self, fileName): #allow user to save a copy of their list where they want
         if not fileName.endswith('.json'):
             fileName += '.json'
-        with open(fileName, 'w') as outfile:
+        with open(fileName, 'w', encoding='utf-8') as outfile:
             json.dump(self.ueList, outfile, ensure_ascii=False)
         miInfo('The overwrite rules list has been exported to "' + fileName +'"', level='not')
