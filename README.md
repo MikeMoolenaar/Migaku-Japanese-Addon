@@ -1,6 +1,6 @@
 # Migaku Japanese Addon Updated
 This project is an unofficial fork of the [Migaku Japanese Addon](https://github.com/migaku-official/Migaku-Japanese-Addon) aiming to be compatible with Anki 2.1.50+ (Qt6).
-The plan for this project is to regularly update the addon to be compatible with the latest Anki version.   
+The plan for this project is to regularly update the addon in order for it to work with the latest Anki version.   
 I personally don't want to make any big improvements or implement new features, though feel free to create a PR/issue if you want to :).
 
 ## Changes
@@ -17,7 +17,7 @@ Currently, the following functionality is broken (not sure if these were already
 
 ## Installation
 ### Uninstalling the previous version and installing the new Anki version
-Note: all settings, except for the Overwrite Rules, will be removed during process. Make sure you have noted down your current settings or made screenshots before
+Note: all settings, except for the 'Overwrite Rules', will be removed during process. Make sure you have noted down your current settings or made screenshots before
 proceeding.
 1. Uninstall the previous Migaku Japanese Addon: go to `Tools` > `Add-ons`, select Migaku Japanese Addon and click `Delete`.  
 1.1. You can also open the addons folder in this screen which we will use in step 5, click on `View Files`.
@@ -25,9 +25,10 @@ proceeding.
 3. Download and install Anki 2.1.54 (Qt6) or newer from [their website](https://apps.ankiweb.net/).
 
 ### Installation of this addon
-4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases) and move the `Migaku-Japanese-Addon-Updated` folder into the `addons21` folder (you may have opened this folder in step 1.1).
-5. Start Anki.
-6. Go to `Migaku` > `Japanese Settings` to configure your settings.
+4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases)
+5. Open de Zip file and move the `Migaku-Japanese-Addon-Updated` folder into the `addons21` folder (you may have opened this folder in step 1.1).
+6. Start Anki.
+7. Go to `Migaku` > `Japanese Settings` to configure your settings.
 
 ## Contributing and bug reports
 Contributions are welcome! Feel free to:
@@ -45,7 +46,7 @@ Please check out their [website](https://www.migaku.io/), [patreon](https://www.
 *Copyright © 2022 Mike Moolenaar  
 *Copyright © 2020 Migaku ltd.
 
-Migaku Japanese is free and open-source software. The add-on code that runs within Anki is released under the GNU AGPLv3 license.  
+Migaku Japanese is free and open-source software. The add-on code that runs within Anki is released under the GNU GPLv3 license.  
 Just like the original project, this fork is licenced under GPL-3.0. Please see the [LICENSE](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon/blob/master/LICENSE) file that is accompanied by this program.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
