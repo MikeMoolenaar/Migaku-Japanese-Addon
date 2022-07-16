@@ -17,7 +17,7 @@ Currently, the following functionality is broken (not sure if these were already
 
 ## Installation
 ### Uninstalling the previous version and installing the new Anki version
-Note: all settings, except for the 'Overwrite Rules', will be removed during process. Make sure you have noted down your current settings or made screenshots before
+Note: all settings, except for the 'Overwrite Rules', will be removed during this process. Make sure you have noted down your current settings or made screenshots before
 proceeding.
 1. Uninstall the previous Migaku Japanese Addon: go to `Tools` > `Add-ons`, select Migaku Japanese Addon and click `Delete`.  
 1.1. You can also open the addons folder in this screen which we will use in step 5, click on `View Files`.
