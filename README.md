@@ -32,9 +32,9 @@ proceeding.
 
 ## Contributing and bug reports
 Contributions are welcome! Feel free to:
-- Create an issue if you found a bug (please make sure you are using Anki version 2.1.50 or later in the QT6 edition)
-- Create pull requests
-- Participate in the Discussions 
+- Create an issue if you found a bug (please make sure you are using Anki version 2.1.50 or later in the QT6 edition).
+- Create pull requests.
+- Participate in the [discussions](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/discussions).
 
 ## Credits
 I would like to sincerely thank Migaku for creating the original addon and releasing the code under GPL-V3. They put in the hard

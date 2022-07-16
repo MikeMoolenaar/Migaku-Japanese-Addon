@@ -1,15 +1,6 @@
-**Type:**
-  - [ ] bug
-  - [ ] feature
-  - [ ] enhancement
-  - [ ] question
+**Environment**
+  - OS: [ Write your OS here, like Windows 10 ]
+  - Anki version: [ Anki version as seen in Help > About ]
 
-**Environment:**
-  - OS:
-
-**I'm going to open a PR to resolve the issue:**
-  - [ ] yes
-  - [ ] no
-
-**Description:**
+**Description**  
 [ Write the issue description here ]
