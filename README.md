@@ -22,10 +22,10 @@ proceeding.
 1. Uninstall the previous Migaku Japanese Addon: go to `Tools` > `Add-ons`, select Migaku Japanese Addon and click `Delete`.  
 1.1. You can also open the addons folder in this screen which we will use in step 5, click on `View Files`.
 2. Close Anki.
-3. Download and install Anki 2.1.54 (Qt6) or newer from [their website](https://apps.ankiweb.net/).
+3. Download and install Anki 2.1.54 (Qt6) or newer from the [Anki website](https://apps.ankiweb.net/).
 
 ### Installation of this addon
-4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases).
+4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases) (the top one listed unser Assets, not the source code).
 5. Open de Zip file and move the `Migaku-Japanese-Addon-Updated` folder into the `addons21` folder (you may have opened this folder in step 1.1).
 6. Start Anki.
 7. Go to `Migaku` > `Japanese Settings` to configure your settings.
@@ -39,7 +39,7 @@ Contributions are welcome! Feel free to:
 ## Credits
 I would like to sincerely thank Migaku for creating the original addon and releasing the code under GPL-V3. They put in the hard
 work and hours to create this addon, I simply updated the code so it works with the latest version of Anki.
-Please check out Migaku on [website](https://www.migaku.io/), [patreon](https://www.patreon.com/Migaku) and [YouTube channel](https://www.youtube.com/c/ImmersewithMigaku).
+Please check out Migaku on their [website](https://www.migaku.io/), [patreon](https://www.patreon.com/Migaku) and [YouTube channel](https://www.youtube.com/c/ImmersewithMigaku).
 
 ## Licence
 *Migaku Japanese Addon Updated* is
