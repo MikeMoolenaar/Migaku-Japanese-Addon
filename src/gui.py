@@ -21,7 +21,7 @@ from operator import itemgetter
 addon_path = dirname(__file__)
 import platform
 
-verNumber = "1.2.3+1.0.0"
+verNumber = "1.2.3+1.0.1"
 
 class JSGui(QScrollArea):
     def __init__(self, mw, colArray, languageModeler, reboot, CSSJSHandler, UEManager):
@@ -946,7 +946,7 @@ class JSGui(QScrollArea):
         self.ui.graphOverwrite.setToolTip('Pitch graph(s) will be generated into the selected pitch graph field(s),\noverwriting their current contents.')
         self.ui.graphIfEmpty.setToolTip('Pitch graph(s) will be only be added to the selected pitch graph field(s) if they are empty.')
         self.ui.graphSep.setToolTip('This is the separator to be used when adding pitch graph(s) to the selected pitch graph field(s)\' current contents.\nThe default separator is an html line break "<br>".')
-        self.ui.lookAhead.setToolTip('This is the number of characters within which the addon will attempt to search for a recognizable word when using the "語" button, a larger number will be slightly slower.')
+        self.ui.lookAhead.setToolTip('This is the number of characters within which the addon will attempt to search for a recognizable word, a larger number will be slightly slower.')
         self.ui.heibanColor.setToolTip('This is the color setting for words with a heiban (平板) pitch accent.')
         self.ui.atamadakaColor.setToolTip('This is the color setting for words with an atamadaka (頭高) pitch accent.')
         self.ui.nakadakaColor.setToolTip('This is the color setting for words with a nakadaka (中高) pitch accent.')
