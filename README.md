@@ -36,6 +36,10 @@ Contributions are welcome! Feel free to:
 - Create pull requests.
 - Participate in the [discussions](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/discussions).
 
+## User manual
+Migaku has published the original user manual of this add-on [here](https://legacy.migaku.io/tools-guides/migaku-japanese/manual/).
+Almost everything is still relevant for this fork, except for the installation instructions.
+
 ## Credits
 I would like to sincerely thank Migaku for creating the original addon and releasing the code under GPL-V3. They put in the hard
 work and hours to create this addon, I simply updated the code so it works with the latest version of Anki.
