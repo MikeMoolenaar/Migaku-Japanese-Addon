@@ -1,7 +1,12 @@
 # Migaku Japanese Addon Updated
-This project is an unofficial fork of the [Migaku Japanese Addon](https://github.com/migaku-official/Migaku-Japanese-Addon) aiming to be compatible with Anki 2.1.50+ (Qt6).
+This project is an unofficial fork of the [Migaku Japanese Addon](https://github.com/migaku-official/Migaku-Japanese-Addon) aiming to be compatible with Anki 2.1.50 (Qt6) and newer.
 The plan for this project is to regularly update the addon in order for it to work with the latest Anki version.   
-I personally don't want to make any big improvements or implement new features, though feel free to create a PR/issue if you want to :).
+I personally don't want to make any big improvements or implement new features, though feel free to create a PR/issue if you want to :).  
+
+Verified to be working with Anki:
+```
+Version ⁨23.10 (51a10f0)⁩
+```
 
 ## Changes
 Changes from original project:
