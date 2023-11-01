@@ -5,7 +5,7 @@ I personally don't want to make any big improvements or implement new features, 
 
 Verified to be working with Anki:
 ```
-Version ⁨23.10 (51a10f0)⁩
+Version 23.10 (51a10f0)
 ```
 
 ## Changes
@@ -22,15 +22,14 @@ Currently, the following functionality is broken (not sure if these were already
 
 ## Installation
 ### Uninstalling the previous version and installing the new Anki version
-Note: all settings, except for the 'Overwrite Rules', will be removed during this process. Make sure you have noted down your current settings or made screenshots before
-proceeding.
+Note: all settings, except for the 'Overwrite Rules', will be removed during this process. Make sure you have noted down your current settings or made screenshots beforeproceeding.
 1. Uninstall the previous Migaku Japanese Addon: go to `Tools` > `Add-ons`, select Migaku Japanese Addon and click `Delete`.  
 1.1. You can also open the addons folder in this screen which we will use in step 5, click on `View Files`.
 2. Close Anki.
 3. Download and install Anki 2.1.54 (Qt6) or newer from the [Anki website](https://apps.ankiweb.net/).
 
 ### Installation of this addon
-4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases) (the top one listed unser Assets, not the source code).
+4. Download the Zip file from the [releases page](https://github.com/MikeMoolenaar/Migaku-Japanese-Addon-Updated/releases) (the top one that is listed under Assets, not the source code).
 5. Open de Zip file and move the `Migaku-Japanese-Addon-Updated` folder into the `addons21` folder (you may have opened this folder in step 1.1).
 6. Start Anki.
 7. Go to `Migaku` > `Japanese Settings` to configure your settings.
