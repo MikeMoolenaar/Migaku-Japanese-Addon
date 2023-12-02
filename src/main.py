@@ -87,7 +87,7 @@ def setupShortcuts(shortcuts, editor):
     keys.append({ "hotkey": "F2", "name" : 'extra', 'function' : lambda  editor=editor: mw.Exporter.groupExport(editor)})
     keys.append({ "hotkey": "F3", "name" : 'extra', 'function' : lambda  editor=editor: mw.Exporter.individualExport(editor)})
     keys.append({ "hotkey": "F4", "name" : 'extra', 'function' : lambda  editor=editor: mw.Exporter.cleanField(editor)})
-    keys.append({ "hotkey": "F5", "name" : 'extra', 'function' : lambda  editor=editor:  UEManager.openAddMenu(editor)})
+    keys.append({ "hotkey": "F5", "name" : 'extra', 'function' : lambda  editor=editor:  UEManager.open_add_menu(editor)})
     newKeys = shortcuts;
     for key in keys:
         newKeys = list(filter(lambda x: shortcutCheck(x[0], key['hotkey']), newKeys))
@@ -101,7 +101,7 @@ def setupButtons(righttopbtns, editor):
     return righttopbtns  
   editor._links["individualExport"] = lambda editor: mw.Exporter.individualExport(editor)
   editor._links["cleanField"] = lambda editor: mw.Exporter.cleanField(editor)
-  editor._links["openUserExceptionsAdder"] = UEManager.openAddMenu
+  editor._links["openUserExceptionsAdder"] = UEManager.open_add_menu
   iconPath = os.path.join(addon_path, "icons", "userexceptions.svg")
   righttopbtns.insert(0, editor._addButton(
                 icon=iconPath,
@@ -201,7 +201,7 @@ def setupGuiMenu():
     setting.triggered.connect(openGui)
     mw.MigakuMenuSettings.append(setting)
     action = QAction("Add Parsing Overwrite Rule", mw)
-    action.triggered.connect(UEManager.openAddMenu)
+    action.triggered.connect(UEManager.open_add_menu)
     mw.MigakuMenuActions.append(action)
 
     mw.MigakuMainMenu.clear()
@@ -227,7 +227,7 @@ def selectedText(page):
 def addOverwriteRule(self):
     text = selectedText(self)
     if text:
-        UEManager.openAddMenu(self, text)
+        UEManager.open_add_menu(self, text)
 
 def addToContextMenu(self, m):
     a = m.addAction("Add Rule")
@@ -237,7 +237,7 @@ AnkiWebView.addOverwriteRule = addOverwriteRule
 addHook("EditorWebView.contextMenuEvent", addToContextMenu)
 addHook("browser.setupMenus", setupMenu)
 addHook("browser.setupMenus", setupMenu)
-addHook("profileLoaded", UEManager.getUEList)
+addHook("profileLoaded", UEManager.get_ue_list)
 addHook("profileLoaded", accentGraphCss)
 addHook("profileLoaded", mw.CSSJSHandler.injectWrapperElements)    
 addHook("setupEditorButtons", setupButtons)
