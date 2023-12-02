@@ -101,9 +101,9 @@ class JSGui(QScrollArea):
 
     def setupRulesTable(self):
         rt = self.ui.rulesTable
-        self.ueMng.setupModel(self)
+        self.ueMng.setup_model(self)
         rt.setModel(self.ueMng.model)
-        self.ueMng.model.ascendingOrder()
+        self.ueMng.model.ascending_order()
         self.updateRuleCounter()
         tableHeader2 = rt.horizontalHeader()
         tableHeader2.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
@@ -142,7 +142,7 @@ class JSGui(QScrollArea):
     def addRule(self):
         original = self.ui.originalLE.text()
         overwrite = self.ui.overwriteLE.text()
-        added, addId = self.ueMng.addRule(original, overwrite, self.ui.ncAddCB.isChecked(), self.ui.lcAddCB.isChecked(), self)
+        added, addId = self.ueMng.add_rule(original, overwrite, self.ui.ncAddCB.isChecked(), self.ui.lcAddCB.isChecked(), self)
         if added:
             self.ui.originalLE.setText('')
             self.ui.overwriteLE.setText('')
@@ -202,11 +202,11 @@ class JSGui(QScrollArea):
         nc = self.ui.ncAllCB.isChecked() 
         lc = self.ui.lcAllCB.isChecked()
         if nc or lc:
-            self.ueMng.applyRules(self.ueMng.model.sourceModel().ueList, nc, lc, self)
+            self.ueMng.apply_rules(self.ueMng.model.sourceModel().ue_List, nc, lc, self)
 
     def applyEditedRule(self, rule, nc, lc):
         if nc or lc:
-            self.ueMng.applyRules(rule, nc, lc, self)
+            self.ueMng.apply_rules(rule, nc, lc, self)
             self.arMenu.hide()
 
     def setRuleData(self, item, data):
@@ -291,13 +291,13 @@ class JSGui(QScrollArea):
     def initRuleSearch(self):
         text = self.ui.searchRulesLE.text()
         if text == '':
-            self.ueMng.model.ascendingOrder()
-            self.ueMng.model.setFilterByColumn(text)
+            self.ueMng.model.ascending_order()
+            self.ueMng.model.set_filter_by_column(text)
             self.updateRuleCounter()   
             self.ui.rulesTable.scrollToTop()
         else:
-            self.ueMng.model.testData(text)
-            self.ueMng.model.setFilterByColumn(text)
+            self.ueMng.model.test_data(text)
+            self.ueMng.model.set_filter_by_column(text)
             self.updateRuleCounter()   
             self.ui.rulesTable.scrollToTop() 
         return
@@ -311,7 +311,7 @@ class JSGui(QScrollArea):
             foundOriginal = []
             foundOverwrite = []
             text = text.lower()
-            for original, overwrite in self.ueMng.ueList.items():
+            for original, overwrite in self.ueMng.ue_List.items():
                 LOriginal = original.lower()
                 LOverwrite = overwrite.lower()
                 if LOriginal == text:
@@ -337,7 +337,7 @@ class JSGui(QScrollArea):
         fileName, _ = QFileDialog.getSaveFileName(self,"Save Overwrite Rules List", 'overwriterules.json', 'JSON Files (*.json)',
                                                options=QFileDialog.Option.DontUseNativeDialog)
         if fileName:
-            self.ueMng.exportUEList(fileName)
+            self.ueMng.export_ue_list(fileName)
 
 
     def importRules(self):
@@ -383,7 +383,7 @@ class JSGui(QScrollArea):
             self.importW.show()
 
     def ruleListImport(self, window, fileName, combine, overwriteCollides):
-        imported = self.ueMng.importUEList(fileName, combine, overwriteCollides) 
+        imported = self.ueMng.import_ue_list(fileName, combine, overwriteCollides) 
         if imported is not False:
             if not combine:
                 miInfo(str(imported[0]) +' rules have been imported.', level = 'not')
@@ -392,9 +392,9 @@ class JSGui(QScrollArea):
                     miInfo(str(imported[0]) +' rules have been imported.<br>' + str(imported[1]) + ' rules have been overwritten.', level = 'not')
                 else:
                     miInfo(str(imported[0]) +' rules have been imported.<br>' + str(imported[1]) + ' rules have been ignored because they conflicted with existing rules.', level = 'not')
-            self.ueMng.setupModel(self)
+            self.ueMng.setup_model(self)
             self.ui.rulesTable.setModel(self.ueMng.model)
-            self.ueMng.model.ascendingOrder()
+            self.ueMng.model.ascending_order()
             self.updateRuleCounter()
             window.hide()
             
