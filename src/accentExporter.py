@@ -492,7 +492,7 @@ class AccentDictionaryParser:
         if not self.kanaMode and not self.dictMode and not self.pitchMode:
             return text, self.audioGraphList;
         else: 
-            return self.ueMng.applyRulesToText(self.noBracketsNoSpaces(self.fStr.replace('[]', '').replace(',]', ']').replace('  ', ' '))), self.audioGraphList;
+            return self.ueMng.apply_rules_to_text(self.noBracketsNoSpaces(self.fStr.replace('[]', '').replace(',]', ']').replace('  ', ' '))), self.audioGraphList;
 
 class AccentExporter:
     def  __init__(self, mw, aqt, UEManager, dictionary,  addon_path, adjustVerbs, separateWord, separateVerbPhrase, ignoreVerbs, dontCombineDict, skipList, parseWithMecab, verbToNoun):
@@ -921,6 +921,3 @@ class AccentExporter:
             return True
         else:
             return False
-
-
-
