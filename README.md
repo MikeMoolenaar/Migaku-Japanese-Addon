@@ -5,7 +5,7 @@ I personally don't want to make any big improvements or implement new features, 
 
 Verified to be working with Anki:
 ```
-Version 24.04 Qt6
+Version 24.06 Qt6
 ```
 
 ## Changes
