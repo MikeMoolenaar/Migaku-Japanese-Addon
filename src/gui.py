@@ -21,7 +21,7 @@ from operator import itemgetter
 addon_path = dirname(__file__)
 import platform
 
-verNumber = "1.2.3+1.0.1"
+verNumber = "1.2.3+1.0.2"
 
 class JSGui(QScrollArea):
     def __init__(self, mw, colArray, languageModeler, reboot, CSSJSHandler, UEManager):
