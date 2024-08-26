@@ -667,18 +667,23 @@ class AccentExporter:
             audioGraphList = False
         if parsed:
             parsed = parsed.split(' ')
+            newHTML = text
             if len(parsed) > 1 and "[" in parsed[1]:
                 parsed = parsed[1]
                 if parsed != ogString:
                     if yomi:
                         if ';' in parsed:
                             parsed = re.search(r'\[[^\[\]]*(;[^\[\]]*\])', parsed).group(1)
-                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(ogString, re.sub(r';[^\[\]]*\]' , parsed , ogString.replace('[a' , '['))))).replace('--IND--', '')
+                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(ogString, re.sub(r';[^\[\]]*\]' , parsed , ogString.replace('[a' , '[')))))
                     elif parsed in rawString:
-                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(parsed, ' ' + parsed + ' '))).replace('--IND--', '')
+                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(parsed, ' ' + parsed + ' ')))
                     else:
-                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(re.sub(r'\[.*\]', '', parsed), ' ' + parsed + ' '))).replace('--IND--', '')
-                    editor.web.eval(self.commonJS + self.insertHTMLJS % self.convertMalformedSpaces(newHTML).replace('"', '\\"'))
+                        newHTML = self.returnEntities(text.replace(rawString, rawString.replace(re.sub(r'\[.*\]', '', parsed), ' ' + parsed + ' ')))
+
+            value = (self.convertMalformedSpaces(newHTML)
+                     .replace('"', '\\"')
+                     .replace('--IND--', ''))
+            editor.web.eval(self.commonJS + self.insertHTMLJS % value)
         if audioGraphList:
             self.addVariants(audioGraphList, note, editor)      
             # self.reloadEditor()
