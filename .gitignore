@@ -1,2 +1,5 @@
 src/user_files/accentAudio
 meta.json
+src/__pycache__/
+src/exceptionDicts/__pycache__/
+.idea
